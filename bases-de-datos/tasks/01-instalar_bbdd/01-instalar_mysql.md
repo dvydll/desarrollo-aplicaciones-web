@@ -165,9 +165,14 @@ Y por último procedemos a crear y ejecutar contenedor de Oracle Database.
 
 ```bash
 sudo docker run --name oracle-db \
-                -e ORACLE_PWD="$db_root_psswd" \
-                -v "$oracledb_data_dir":/opt/oracle/oradata \
-                -v "$oracledb_logs_dir":/opt/oracle/diag \
-                -p 1521:1521 -p 5500:5500 \
-                -d container-registry.oracle.com/database/free:latest
+								-e ORACLE_ACCEPT_LICENSE=true \
+								-e ORACLE_PWD="$db_root_psswd" \
+								-v "$oracledb_data_dir":/opt/oracle/oradata \
+								-v "$oracledb_logs_dir":/opt/oracle/diag \
+								-p 1521:1521 -p 5500:5500 \
+								-d container-registry.oracle.com/database/free:latest
 ```
+
+Ya solo nos quedaría comprobar que efectivamente está el contenedor correctamente levantado y conectarnos a la BBDD. En mi caso he usado DBeaver para gestionar la conexión
+
+<img src="conexion-oracle-db.png" alt="Conexión a Oracle Database">
